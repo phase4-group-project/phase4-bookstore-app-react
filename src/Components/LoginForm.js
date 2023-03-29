@@ -1,31 +1,35 @@
 import React from 'react'
 import { useState } from 'react'
-import { json } from 'react-router-dom'
 
-function Login(onLogin) {
+
+function LoginForm(onLogin) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     function handleSubmit(e) {
         e.preventDefault()
-        fetch ("/login", {
+        setIsLoading(true);
+        fetch ("/login", { 
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body:json.stringify({username, password})
+            body: JSON.stringify({username, password})
 
 
         })
         .then((r)=>{
+          setIsLoading(false);
             if (r.ok) {
                 r.json().then((user) => onLogin(user))
             }
-            else {
-                r.json().then((err) => setErrors(err.errors))  
+          //  else {
+                // r.json().then((err) => setErrors(err.errors))  
 
-            }
+            // }
         })
     }
   
@@ -54,17 +58,18 @@ function Login(onLogin) {
      
       
         <button  type="submit">
+            {isLoading ? "Loading..." : "Login"}
          
         </button>
      
       
-        {errors.map((err) => (
+        {/* {errors.map((err) => (
           <Error key={err}>{err}</Error>
-        ))}
+        ))} */}
       
     </form>
     </div>
   )
 }
 
-export default Login
+export default LoginForm
