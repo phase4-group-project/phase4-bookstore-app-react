@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-function SignUpForm(onLogin) {
+function SignUpForm({onLogin}) {
 
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -12,21 +12,21 @@ function SignUpForm(onLogin) {
     function handleSubmit(e) {
       e.preventDefault()
       setIsLoading(true)
-      fetch("/signup", {
+      fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          username,
-          email,
-          passwordConfirmation,
+          username :username,
+          email :email,
+          password :password,
 
         })
       }).then((r)=> {
         setIsLoading(false)
         if (r.ok) {
-          r.json(). then((user)=> onLogin(user))
+          r.json().then((user)=> onLogin(user))
 
          } 
         //  else {

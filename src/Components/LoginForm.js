@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 
 
-function LoginForm(onLogin) {
+function LoginForm({onLogin}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState([]);
@@ -12,12 +12,12 @@ function LoginForm(onLogin) {
     function handleSubmit(e) {
         e.preventDefault()
         setIsLoading(true);
-        fetch ("/login", { 
+        fetch ("http://localhost:3000/users/login", { 
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({username, password})
+            body: JSON.stringify({username :username, password :password})
 
 
         })
@@ -25,11 +25,12 @@ function LoginForm(onLogin) {
           setIsLoading(false);
             if (r.ok) {
                 r.json().then((user) => onLogin(user))
+               ;
             }
-          //  else {
-                // r.json().then((err) => setErrors(err.errors))  
+           else {
+                r.json().then((err) => setErrors(err.errors))  
 
-            // }
+           }
         })
     }
   
