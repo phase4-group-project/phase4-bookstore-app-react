@@ -3,13 +3,14 @@ import './App.css';
 import Login from './pages/Login';
 import React, { useState, useEffect } from 'react';
 import { Routes , Route } from "react-router-dom"
+import NavBar from './Components/NavBar';
 
 
 function App() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    fetch ("")
+    fetch ("http://localhost:3000/me")
     .then((r)=>{
       if (r.ok) {r.json()
         .then((user)=> setUser(user))
@@ -24,18 +25,9 @@ function App() {
 
   return (
     <>   
-    
+      <NavBar user = {user} setUser = {setUser}/>
       <main>
-        <Routes>
-            <Route path = "/login">
-                
-            
-            </Route>
-            <Route path= "/signup">
-               
-            </Route>
-              
-          </Routes>
+       
       </main>
     </>
   );
