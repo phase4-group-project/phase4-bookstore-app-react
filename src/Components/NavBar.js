@@ -1,8 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function NavBar({user, setUser}) {
-    console.log(user);
+    console.log(user.data);
+    
+    const username = user.data.username
+    
 
     function handleDelete(){
         fetch("http://localhost:3000/users/logout", {
@@ -18,11 +21,11 @@ function NavBar({user, setUser}) {
     }
   return (
     <nav>
-    <h1>BOOKSTORE</h1>
-    <h2>hello,  </h2>
-    <h2></h2>
-        <button>New Book</button>
-        <button  onClick={handleDelete} >Logout</button>
+    <h1>BOOKSTORE APP</h1>
+    <h2> Hello, {username} </h2> 
+    <NavLink to = "/"> <button>Home</button></NavLink>
+    <NavLink to="newbook"><button>New Book</button> </NavLink>
+    <button  onClick={handleDelete} >Logout</button>
     </nav>
 
   )

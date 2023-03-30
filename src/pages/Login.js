@@ -3,7 +3,7 @@ import { useState } from 'react'
 import LoginForm from '../Components/LoginForm'
 import SignUpForm from '../Components/SignUpForm'
 
-
+//CHange state between login and signup form 
 function Login({onLogin}) {
     const [showLogin, setShowLogin] = useState(true)
   return (
