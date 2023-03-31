@@ -10,22 +10,8 @@ function NewBook({ token }) {
   const [price, setPrice] = useState('');
   
 
-  const fetchBooks = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3000/books`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setBooks(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
 
   const handleSubmit = async (event) => {
     

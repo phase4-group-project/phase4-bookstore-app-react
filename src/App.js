@@ -6,7 +6,7 @@ import NavBar from "./Components/NavBar";
 import Home from "./pages/Home";
 import NewBook from "./Components/NewBook";
 import Register from "./pages/Register";
-
+import Booklist from "./Components/Booklist";
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
 
