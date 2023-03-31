@@ -1,43 +1,65 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-function NewBook({ onAddBook }) {
-  // :title, :description, :price, :author
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [author, setAuthor] = useState("");
+function NewBook({ token }) {
+     
+  const [books, setBooks] = useState([]);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [author, setAuthor] = useState('');
+  const [price, setPrice] = useState('');
+  
 
-  useEffect(() => {}, []);
-
-  function handleSubmitClick(e) {
-    e.preventDefault();
-
-    fetch("http://localhost:3000/books", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-        description: description,
-        price: price,
-        author: author,
-      }),
-    })
-      .then((r) => r.json())
-      .then((newBook) => {
-        onAddBook(newBook);
-        setTitle("");
-        setDescription("");
-        setPrice("");
-        setAuthor("");
+  const fetchBooks = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/books`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
-  }
+      setBooks(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  const handleSubmit = async (event) => {
+    
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/books`,
+        {
+          title: title,
+          description: description,
+          author: author,
+          price: price,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setBooks([...books, response.data]);
+      setTitle('');
+      setDescription('');
+      setAuthor('');
+      setPrice('');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <div>
       NewBook
-      <form className="add" onSubmit={handleSubmitClick}>
+      <form className="add" onSubmit={handleSubmit}>
       <label>Title : </label>
         <input
           type="text"
