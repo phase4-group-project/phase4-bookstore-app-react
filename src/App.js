@@ -6,9 +6,16 @@ import NavBar from "./Components/NavBar";
 import Home from "./pages/Home";
 import NewBook from "./Components/NewBook";
 import Register from "./pages/Register";
+<<<<<<< HEAD
 import Booklist from "./Components/Booklist";
+=======
+import Categories from "./pages/Categories";
+
+
+>>>>>>> 5e02aeb55397c8a5251e9f7976ceb71fca2a13fc
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
+
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -24,8 +31,9 @@ function App() {
       <Routes>
         <Route path="/login" element={!token ? <Login setToken={setToken} /> : <Home token={token} />} />
         <Route path="/register" element={!token ? <Register setToken={setToken} /> : <Home token={token} />} />
-        {/* <Route path="/" element={token ? <Home token={token} /> : <Login setToken={setToken} />} />
-        <Route path="/books" element={token ? <NewBook token={token} /> : <Login setToken={setToken} />} /> */}
+        <Route path="/" element={token ? <Home token={token} /> : <Login setToken={setToken} />} />
+        <Route path="/books" element={token ? <NewBook token={token} /> : <Login setToken={setToken} />} />
+        <Route path="/categories" element={token ? <Categories token={token} /> : <Login setToken={setToken} />} />
       </Routes>
      
       </main>
