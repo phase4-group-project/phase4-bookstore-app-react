@@ -1,8 +1,9 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 
-function NavBar({ token, logout  }) {
- 
+function NavBar({ token, logout, user  }) {
+  
 
   return (
     <header className="pt-1">
@@ -19,7 +20,9 @@ function NavBar({ token, logout  }) {
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
              <Link className="nav-link " to="/books">Books</Link>
-             
+          </li>
+          <li className="nav-item">
+          <Link className="nav-link " to="/categories">Categories</Link>
           </li>
         </ul>
         <div className="d-flex">
@@ -27,7 +30,9 @@ function NavBar({ token, logout  }) {
         <>
          <ul className="nav nav-pills nav-fill">
   <li className="nav-item">
-    <a className="nav-link me-3" href="#/"> username </a>
+  {user && (
+    <a className="nav-link me-3" href="#/"> {user} </a>
+  )}
   </li>
   <li className="nav-item pt-1">
       <button className="btn btn-outline-danger btn-sm"  onClick={logout}>Logout</button>
