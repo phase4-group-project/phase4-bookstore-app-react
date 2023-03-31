@@ -1,34 +1,58 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-function NavBar({user, setUser}) {
-    console.log(user.data);
-    
-    const username = user.data.username
-    
+function NavBar({ token, logout  }) {
+ 
 
-    function handleDelete(){
-        fetch("http://localhost:3000/users/logout", {
-            method: "DELETE"
-        }).then((r)=> {
-            if (r.ok) {
-                setUser(null)
-                
-            }
-
-        })
-        
-    }
   return (
-    <nav>
-    <h1>BOOKSTORE APP</h1>
-    <h2> Hello, {username} </h2> 
-    <NavLink to = "/"> <button>Home</button></NavLink>
-    <NavLink to="newbook"><button>New Book</button> </NavLink>
-    <button  onClick={handleDelete} >Logout</button>
-    </nav>
+    <header className="pt-1">
+      <div>
+      
+          <>
+      <nav className="navbar navbar-expand-sm ">
+    <div className="container-fluid">
+      <Link className="navbar-brand" to="/">📚 <b>BookStore</b></Link>
+      <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <li className="nav-item">
+             <Link className="nav-link " to="/books">Books</Link>
+             
+          </li>
+        </ul>
+        <div className="d-flex">
+        {token ?(
+        <>
+         <ul className="nav nav-pills nav-fill">
+  <li className="nav-item">
+    <a className="nav-link me-3" href="#/"> username </a>
+  </li>
+  <li className="nav-item pt-1">
+      <button className="btn btn-outline-danger btn-sm"  onClick={logout}>Logout</button>
+      </li>
+      </ul>
+        </>
+        ) : (
+<>
+  <div className="nav-item pt-0">
+  <Link to="/login"><button className="btn btn-outline-info btn-sm " href="login" type="submit">Login</button></Link> 
+  <Link to="/register"><button className="btn btn-outline-info btn-sm " href="register" type="submit">Signup</button></Link> 
+  </div>
+</>
+        )}
+        </div>
+        
+      </div>
+    </div>
+  </nav>
+  </>
 
-  )
+   </div>
+    </header>
+     
+  );
 }
 
-export default NavBar
+export default NavBar;
