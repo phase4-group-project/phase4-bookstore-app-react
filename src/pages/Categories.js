@@ -2,62 +2,98 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 function Categories({ token }) {
-  const [categories, setCategories] = useState([]);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-
-  const fetchCategories = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3000/categories`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setCategories(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchCategories();
-  }, []);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        `http://localhost:3000/categories`,
-        {
-          name: name,
-          description: description,
-        },
-        {
+    const [categories, setCategories] = useState([]);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [editingCategory, setEditingCategory] = useState(null);
+    const [editingName, setEditingName] = useState("");
+    const [editingDescription, setEditingDescription] = useState("");
+  
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/categories`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
-      );
-      setCategories([...categories, response.data]);
-      setName("");
-      setDescription("");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:3000/categories/:id`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setCategories(categories.filter((category) => category.id !== id));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+        });
+        setCategories(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    useEffect(() => {
+      fetchCategories();
+    }, []);
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const response = await axios.post(
+          `http://localhost:3000/categories`,
+          {
+            name: name,
+            description: description,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setCategories([...categories, response.data]);
+        setName("");
+        setDescription("");
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    const handleDelete = async (categoryId) => {
+      try {
+        // Send DELETE request to server to delete category from database
+        await axios.delete(`http://localhost:3000/categories/${categoryId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        // Remove category from list of categories in component state
+        setCategories(categories.filter((category) => category.id !== categoryId));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    const handleEdit = (category) => {
+      setEditingCategory(category);
+      console.log("editingCategory:", editingCategory);
+      setEditingName(category.name);
+      setEditingDescription(category.description);
+    };
+  
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        const res = await fetch(`http://localhost:3000/categories/${editingCategory.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: editingName,
+            description: editingDescription,
+          }),
+        });
+        const data = await res.json();
+        setCategories(
+          categories.map((category) =>
+            category.id === data.id ? { ...data, editing: false } : category
+          )
+        );
+        setEditingCategory(null);
+        setEditingName("");
+        setEditingDescription("");
+      };
 
   return (
     <div className="container">
@@ -108,15 +144,85 @@ function Categories({ token }) {
                   </h5>
                   <p className="card-text">{category.description}</p>
 
-                  <button className="btn btn-primary btn-sm">
-                    Edit Category
+                  <button
+                    className="btn btn-primary btn-sm"
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onClick={() => handleEdit(category)}
+                  >
+                    Edit
                   </button>
                   <button
                     className="btn btn-danger btn-sm"
-                    onClick={handleDelete}
+                    onClick={() => handleDelete(category.id)}
                   >
                     Delete Category
                   </button>
+                </div>
+                {/* modal */}
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">
+                          Modal title
+                        </h1>
+
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                      
+                        <form onSubmit={handleUpdate}>
+                          <div className="mb-3">
+                            <input
+                              type="text"
+                              className="form-control form-control-sm"
+                              placeholder="Name"
+                              aria-label="Name"
+                              value={editingName} onChange={(e) => setEditingName(e.target.value)}
+                            />
+                          </div>
+                          <div className="mb-3">
+                            <input
+                              type="text"
+                              className="form-control form-control-sm"
+                              placeholder="Description"
+                              aria-label="Description"
+                              value={editingDescription} onChange={(e) => setEditingDescription(e.target.value)}
+                            />
+                          </div>
+                         
+
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                              Save changes
+                            </button>
+                          </div>
+                        </form>
+                        
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
