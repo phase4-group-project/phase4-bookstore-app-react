@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Book from './Book';
 
 
 function Booklist({token}) {
@@ -19,7 +20,8 @@ function Booklist({token}) {
           Authorization: `Bearer ${token}`,
         },
       });
-      setBooks(response.data);
+      (setBooks(response.data));
+      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -57,8 +59,23 @@ function Booklist({token}) {
     }
   };
 
+  // Handle delete a book item in state
+  function handleDeleteBook(id) {
+    const updatedBooks = books.filter((book) => book.id !== id);
+    setBooks(updatedBooks);
+  }
+
   return (
-    <div>Booklist
+    <div>
+    <ul>{books.map((book) => (
+          <Book
+            token = {token}
+            key={book.id}
+            book={book}
+            onBookDelete={handleDeleteBook}
+            // onBookUpdate={handleUpdateBook}
+          />
+        ))}</ul>
     </div>
   )
 }
