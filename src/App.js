@@ -10,6 +10,7 @@ import Book from "./Components/Book";
 
 import Categories from "./pages/Categories";
 import Booklist from "./Components/Booklist";
+import ResetPassword from "./pages/ResetPassword";
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/categories" element={token ? <Categories token={token} /> : <Login setToken={setToken} />} />
         <Route path="/books" element={token ? <Book token={token} /> : <Login setToken={setToken} />} />
         <Route path="/booklist" element={token ? <Booklist token={token} /> : <Login setToken={setToken} />} />
+        <Route path="/resetpassword" element={<ResetPassword />}/>
 
       </Routes>
      

@@ -116,10 +116,9 @@ const BookList = ({ token }) => {
             <div className="container-fluid ">
               <h2>BOOK DETAILS</h2>
               <div className="d-flex mb-2">
-                <Link to="/login">
+                <Link to="/newbooks">
                   <button
                     className="btn btn-outline-info btn-sm"
-                    href="/addbook"
                     type="submit"
                   >
                     Add Book ➕
@@ -132,7 +131,7 @@ const BookList = ({ token }) => {
             {books.map((book) => (
               <div
                 className="card ms-1 mb-1"
-                style={{ width: "15rem", height: "14.2rem" }}
+                style={{ width: "18rem", height: "14rem" }}
                 key={book.id}
               >
                 <div className="card-body pt-1">
@@ -140,15 +139,22 @@ const BookList = ({ token }) => {
                     {book.title}
                   </h5>
                   <p className="card-text pt-0">{book.description}</p>
-                  <p className="card-text pt-0">{book.price}</p>
+               
                   <p className="card-text pt-0">{book.author}</p>
-                  <p className="card-text pt-0">{book.category_name}</p>
+                  
+                  <div className="row">
+                          <div className="col-md-6">
+                          <p className="card-text pt-0">{book.category_name}</p>
+                            </div>
+                            <div className="col">
+                            <p className="card-text pt-0">Price: {book.price}</p>
+                            </div>
+                            </div>
                 </div>
                 <div className="mb-1">
                   <button
                     className="btn btn-primary btn-sm"
                     type="button"
-                    class="btn btn-primary btn-sm"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     onClick={() => handleEdit(book)}
@@ -156,7 +162,7 @@ const BookList = ({ token }) => {
                     Edit Book
                   </button>
                   <button
-                    className="btn btn-danger btn-sm"
+                    className="btn btn-danger btn-sm ms-5"
                     onClick={() => handleDelete(book.id)}
                   >
                     Delete 🗑
