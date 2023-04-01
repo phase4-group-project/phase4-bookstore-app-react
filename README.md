@@ -1,106 +1,161 @@
- ## Bookstore App REACT FRONTEND .
- 
- # BDD Overview
- 
- # App.
-	#Contains routes to the different pages
-	routes: signup, login, 
-	
- # Home
-	
- # SignUpForm
-	#Creates a new user
-	handleSubmit POST  to "/users"
-	Form for signup params
-	
- # LoginForm
-	#login a user
-	handleSubmit POST to "/login"
-	Form for login params
-	login page styling
-	 
-  
- # NavBar
- 
- # Newbook
-    create a new book POST "/books"
- 
-#  Booklist
-	list of books GET  "/books"
-	update book POST "/books/:id"
-	delete a book DELETE "/books/:id"
-	specific book details GET "books/:id"
-	
-	specific users books GET "/users/:id/books" 
-	
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Jobwawesh/my-portfolio-app-backend/graphs/commit-activity)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# BOOK STORE REACT APP
+Our book store app is the ultimate platform for book lovers. With our app, you can easily browse through a vast collection of books and purchase the ones you love.
 
-## Available Scripts
+Our app features a user-friendly interface with easy navigation, making it simple to view book titles and descriptions. We offer a wide variety of books, including fiction, non-fiction, biographies, self-help, and much more. Our extensive catalog features the latest and greatest titles from top publishers.
 
-In the project directory, you can run:
+Overall, our book store app is the perfect solution for anyone who loves reading and wants to explore a wide range of books. Hope you enjoy, CHEERS!
 
-### `npm start`
+## Screenshot
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img src="images/booksERD.png" width="1000">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Pre-Requisites
+In order to use this repository you will need the following:
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+- Operating System **(Windows `10+`, Linux `3.8+`, or MacOS X `10.7+`)**
+- RAM >= 4GB
+- Free Space >= 2GB
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Built With
+This application has been built with the following tools:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![NPM](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+- **React**
+- **npm**
+- **Vercel**
+- **Javascript**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## A deployed live link to this project:
+This is the deployed link which helps you run the app in real time:
+        https://superheroes-code-challenge-backend.onrender.com/heroes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To use this repo on your machine requires some simple steps
 
-## Learn More
+### Alternative One
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Open a terminal / command line interface on your computer
+- Clone the repo by using the following:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+        git clone https://github.com/phase4-group-project/phase4-bookstore-app-react
 
-### Code Splitting
+- Be patient as it creates a copy on your local machine for you.
+- Change directory to the repo folder:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+        cd phase4-bookstore-app-react
 
-### Analyzing the Bundle Size
+- (Optional) Open it in ``Visual Studio Code``
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+        code .
 
-### Making a Progressive Web App
+- (Alternate Option) Open it in any editor of your choice.
+- Hurray! You are one step closer to being as intelligent as Einstein.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Alternative Two
 
-### Advanced Configuration
+- On the top right corner of this page there is a button labelled ``Fork``.
+- Click on that button to fork the repo to your own account.
+- Take on the process in ``Alternative One`` above.
+- Remember to replace your username when cloning.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+        git clone https://github.com/your-username-here phase4-bookstore-app-react
 
-### Deployment
+## Running the application
+Running the application is very straight forward. You can use the following steps to run the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Ensure you install the required dependancies
+    ```{shell}
+   npm install
+   ```
+2. Run the application
+    ```{shell}
+    npm start
+    ```
+3. Open the application from your browser
+    ```
+   http://localhost:3000
+   ```
+   
+## Running the Application and Features
+### User Story
+- This Application works with fetched data  from a remote server. The API used was created specifically for this app: https://my-app-backend-portfolio.onrender.com/project 
+- The first thing you will notice when you load the page is the login page where you need to either login if you have an account or signup if not. 
+- Once you create an account you will be able to see other peoples,projects on your home page.
+- On the profile section, you will be able to see a list of skills.
+- You are able to add your own projects on your profile where they will be displayed  on the homme page.
+- You can add or delete both your.
 
-### `npm run build` fails to minify
+### MODELS
+Database models representation for this app:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### USER
+| COLUMN        | DATA TYPE | DESCRIPTION                           | 
+|---------------|-----------|---------------------------------------|
+| id            | Integer   | Unique identifier.                    |
+| name          | String    | User's name.                       |
+| password_hash | String    | User's password hashed with `BCrypt`. |
+| updated_at    | Date      | The date the user was updated.        |
+| createdAt     | Date      | The date the user was created.        |
+
+
+#### BOOKS
+| COLUMN      | DATA TYPE                                       | DESCRIPTION                            | 
+|-------------|-------------------------------------------------|----------------------------------------|
+| id          | Integer                                         | Unique identifier.                     |
+| title       | String                                          | The name of the project.               |
+| description | String                                          | A short description about the project. |
+| price | Integer | The price of the book. |
+| author | String | The author of the book. |
+| createdAt   | Date                                            | The date the book was created.         |
+
+#### ORDERS
+| COLUMN      | DATA TYPE                                       | DESCRIPTION                            | 
+|-------------|-------------------------------------------------|----------------------------------------|
+| id          | Integer                                         | Unique identifier.                     |
+| user_id       | Integer                                          | The user's id |
+| book_id | Integer                                         | The book's unique identifier. |
+| quantity | Integer | The number of books. |
+| total_price | Integer | The accumulative price of the books. |
+| createdAt   | Date                                            | The date the ordder was created.     
+
+#### AUTHOR
+| COLUMN        | DATA TYPE | DESCRIPTION                           | 
+|---------------|-----------|---------------------------------------|
+| id            | Integer   | Unique identifier.                    |
+| name          | String    | Author's name.                        |
+| bio           | String    | Short info about the author.          |
+| createdAt     | Date      | The date the author was created.      |
+
+#### CATEGORIES
+| COLUMN        | DATA TYPE | DESCRIPTION                           | 
+|---------------|-----------|---------------------------------------|
+| id            | Integer   | Unique identifier.                    |
+| name          | String    | Author's name.                        |
+| description   | String    | A short description about tcategory.  |
+| createdAt     | Date      | The date the category was created.    |
+
+# Authors
+This project was contributed to by:
+- [Job Waweru](https://github.com/Jobwawesh/)
+- [Kevin Kimutai](https://github.com/kevinkkimutai)
+- [Ivan Kainga](https://github.com/KahingaK)
+- [Ian Orieko](https://github.com/orgs/phase4-group-project/people/ianrich69420)
+
+
+# License
+The project is licensed under Mozilla Public License Version 2.0
