@@ -63,7 +63,7 @@ function NewBook({ token }) {
             <div className="section pb-0 pt-0 pt-sm-0  pt-0 ms-5">
               <div className="card-3d-wrap mx-auto pt-0 ms-5">
                 <div className="card-3d-wrapper" style={{ width: "700px" }}>
-                  <div className="card-front">
+                  <div className="card-front" style={{height: "450px"}}>
                     <div className="center-wrap ">
                     
                       <form onSubmit={handleSubmit} className="pt-2">
@@ -75,7 +75,7 @@ function NewBook({ token }) {
                             </label>
                             <input
                               type="text"
-                              className="form-control"
+                              className="form-style"
                               placeholder="Book Title"
                               id="title"
                               value={title}
@@ -89,7 +89,7 @@ function NewBook({ token }) {
                             </label>
                             <input
                               type="text"
-                              className="form-control"
+                              className="form-style"
                               placeholder="Book Author"
                               id="author"
                               value={author}
@@ -105,7 +105,7 @@ function NewBook({ token }) {
                             </label>
                             <input
                               type="decimal"
-                              className="form-control"
+                              className="form-style"
                               placeholder="Book Price"
                               id="price"
                               value={price}
@@ -117,7 +117,7 @@ function NewBook({ token }) {
                               Book Category
                             </label>
                             <select
-                              className="form-control"
+                               className="form-style"
                               id="category"
                               value={category_id}
                               onChange={(e) => setCategory_id(e.target.value)}
@@ -138,7 +138,7 @@ function NewBook({ token }) {
                             Book Description
                           </label>
                           <textarea
-                            className="form-control"
+                            className="form-style" style={{height: "100px"}}
                             rows="3"
                             placeholder="Book Description"
                             id="description"
