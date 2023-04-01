@@ -4,18 +4,13 @@ import { Link } from "react-router-dom";
 
 const BookList = ({ token }) => {
   const [books, setBooks] = useState([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [author, setAuthor] = useState("");
-  const [price, setPrice] = useState("");
-  const [category_id, setCategory_id] = useState("");
   const [editingBook, setEditingBook] = useState(null);
   const [editingTitle, setEditingTitle] = useState("");
   const [editingDescription, setEditingDescription] = useState("");
   const [editingAuthor, setEditingAuthor] = useState("");
   const [editingPrice, setEditingPrice] = useState("");
   const [editingCategory_id, setEditingCategory_id] = useState("");
-
+  
   const fetchBooks = async () => {
     try {
       const response = await axios.get(`http://localhost:3000/books`, {
@@ -23,44 +18,33 @@ const BookList = ({ token }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setBooks(response.data);
+  
+      // Map through the books and get the category information for each book
+      const booksWithCategory = await Promise.all(
+        response.data.map(async (book) => {
+          const categoryResponse = await axios.get(
+            `http://localhost:3000/categories/${book.category_id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          const category = categoryResponse.data;
+          return { ...book, category };
+        })
+      );
+  
+      setBooks(booksWithCategory);
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   useEffect(() => {
     fetchBooks();
   }, []);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post(
-        `http://localhost:3000/books`,
-        {
-          title: title,
-          description: description,
-          author: author,
-          price: price,
-          category_id: category_id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setBooks([...books, response.data]);
-      setTitle("");
-      setDescription("");
-      setAuthor("");
-      setPrice("");
-      setCategory_id("");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
 
   const handleDelete = async (bookId) => {
     try {
@@ -158,6 +142,7 @@ const BookList = ({ token }) => {
                   <p className="card-text pt-0">{book.description}</p>
                   <p className="card-text pt-0">{book.price}</p>
                   <p className="card-text pt-0">{book.author}</p>
+                  <p className="card-text pt-0">{book.category_name}</p>
                 </div>
                 <div className="mb-1">
                   <button

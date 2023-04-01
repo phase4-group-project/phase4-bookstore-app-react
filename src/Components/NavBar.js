@@ -24,6 +24,9 @@ function NavBar({ token, logout, user  }) {
           <li className="nav-item">
           <Link className="nav-link " to="/categories">Categories</Link>
           </li>
+          <li className="nav-item">
+          <Link className="nav-link " to="/newbooks">New Book</Link>
+          </li>
         </ul>
         <div className="d-flex">
         {token ?(
