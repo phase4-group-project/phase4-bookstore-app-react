@@ -13,7 +13,7 @@ Overall, our book store app is the perfect solution for anyone who loves reading
 
 ## Screenshot
 
-<img src="images/booksERD.png" width="1000">
+<img src="images/bookstoreReact.png" width="1000">
 
 ## Pre-Requisites
 In order to use this repository you will need the following:
