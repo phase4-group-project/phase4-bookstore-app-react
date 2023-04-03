@@ -97,7 +97,7 @@ Running the application is very straight forward. You can use the following step
 - The first thing you will notice when you load the page is the login page where you need to either login if you have an account or signup if not. 
 - Once you create an account you will be able to see other peoples,projects on your home page.
 - On the profile section, you will be able to see a list of skills.
-- You are able to add your own projects on your profile where they will be displayed  on the homme page.
+- You are able to add your own on your profile where they will be displayed  on the he page.
 - You can add or delete both your.
 
 ### MODELS
