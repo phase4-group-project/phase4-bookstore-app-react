@@ -40,7 +40,7 @@ This application has been built with the following tools:
 
 ## A deployed live link to this project:
 This is the deployed link which helps you run the app in real time:
-        https://superheroes-code-challenge-backend.onrender.com/heroes
+        https://bookstore-app-eta.vercel.app/
 
 
 ## Installation
